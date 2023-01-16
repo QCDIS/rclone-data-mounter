@@ -2,7 +2,14 @@ import * as React from 'react';
 import { requestAPI } from '@jupyter_vre/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './Theme';
-import { Divider, TextField } from '@material-ui/core';
+import { Divider } from '@material-ui/core';
+import CurrentRemotes from "./CurrentRemotes"; // Import the styled CurrentRemotes component
+
+const remotes = [
+    { name: "test", type: "s3" },
+    { name: "test2", type: "s3" },
+    { name: "test3", type: "s3" }
+  ];
 
 interface DataMounterPanelProps {
 
@@ -63,16 +70,10 @@ export class DataMounterPanel extends React.Component<DataMounterPanelProps> {
                             <p className={'lw-panel-header'}>
                                 Rclone configuration
                             </p>
-
                         </div>
                         <Divider />
                         <div className={'nb-search-field'}>
-                            <TextField
-                                id="standard-basic"
-                                label="Keyword"
-                                variant="standard"
-                                value={this.state.keyword}
-                                onChange={this.onChangeKeyword} />
+                            <CurrentRemotes remotes={remotes} />
                         </div>
                         <Divider />
                     </div>
