@@ -1,5 +1,6 @@
 # Development 
 
+Don't forget to pull before starting work.
 
 ## Summary 
 
