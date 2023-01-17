@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { requestAPI } from '@jupyter_vre/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './Theme';
 import { Divider } from '@material-ui/core';
@@ -15,50 +14,7 @@ interface DataMounterPanelProps {
 
 }
 
-interface IState {
-    keyword: string
-    items: []
-}
-
-const DefaultState: IState = {
-    keyword: '',
-    items: []
-}
-
 export class DataMounterPanel extends React.Component<DataMounterPanelProps> {
-
-    state = DefaultState;
-
-    constructor(props: DataMounterPanelProps) {
-        super(props);
-    }
-
-    onChangeKeyword = (event: React.ChangeEvent<HTMLInputElement>) => {
-
-        this.setState({
-            keyword: event.target.value
-        });
-
-        this.getResults();
-    }
-
-    onItemClick = (index: number) => {
-        console.log(this.state.items[index]);
-    }
-
-    getResults = async () => {
-
-        const resp = await requestAPI<any>('notebooksearch', {
-            body: JSON.stringify({
-                keyword: this.state.keyword
-            }),
-            method: 'POST'
-        });
-
-        this.setState({
-            items: resp
-        });
-    };
 
     render(): React.ReactElement {
 
@@ -72,7 +28,7 @@ export class DataMounterPanel extends React.Component<DataMounterPanelProps> {
                             </p>
                         </div>
                         <Divider />
-                        <div className={'nb-search-field'}>
+                        <div className={'current-remotes-field'}>
                             <CurrentRemotes remotes={remotes} />
                         </div>
                         <Divider />
