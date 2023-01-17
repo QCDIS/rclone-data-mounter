@@ -39,7 +39,7 @@ conda install -c conda-forge typescript
 
 Clone project:
 ```shell
-git clone https://github.com/QCDIS/NaaVRE.git
+git clone https://github.com/QCDIS/rclone-data-mounter.git
 ```
 
 Create and checkout branch:
