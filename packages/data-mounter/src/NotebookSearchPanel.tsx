@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './Theme';
 import { Divider } from '@material-ui/core';
-import CurrentRemotes from "./CurrentRemotes"; // Import the styled CurrentRemotes component
+import CurrentRemotes from "./CurrentRemotes"; 
 
 const remotes = [
     { name: "test", type: "s3" },
