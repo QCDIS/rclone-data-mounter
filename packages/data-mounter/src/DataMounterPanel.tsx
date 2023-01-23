@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './Theme';
 import { Divider, Button } from '@material-ui/core';
-import CurrentRemotes from './CurrentRemotes';
-import BasicTextField from './Pages/BasicTextField';
+import CurrentRemotes from './Pages/CurrentRemotes';
+import BasicTextField from './Pages/NameNewRemoteField';
 import NewRemoteOptions from './Pages/NewRemoteOptions';
 
 const remotes = [
@@ -42,7 +42,7 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                             <h2>
                                 {selectedOption}
                                 <div>
-                                    <BasicTextField />
+                                    <NameNewRemoteField />
                                     <select className="NewRemoteOptionsMenu">
                                         {NewRemoteOptions.map((option, index) => (
                                             <option key={index} value={option}>
@@ -63,13 +63,6 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                 </Button>
                             ))}
                         </div>
-                        // <div className={'option-menu-container'}>
-                        //     {options.map((option, index) => (
-                        //         <Button key={index} variant="contained">
-                        //             {option}
-                        //         </Button>
-                        //     ))}
-                        // </div>
                     )}
                 </div>
             </div>
