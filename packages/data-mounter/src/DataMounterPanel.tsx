@@ -1,13 +1,15 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './Theme';
 import { Divider, Button } from '@material-ui/core';
 import CurrentRemotes from './CurrentRemotes';
+import BasicTextField from './Pages/BasicTextField';
+import NewRemoteOptions from './Pages/NewRemoteOptions';
 
 const remotes = [
     { name: 'test', type: 's3' },
     { name: 'test2', type: 's3' },
-    { name: 'test3', type: 's3' }
+    { name: 'test4', type: 's3' }
 ];
 
 const options = [
@@ -22,6 +24,7 @@ const options = [
 interface DataMounterPanelProps {}
 
 export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
     return (
         <ThemeProvider theme={theme}>
             <div className={'lifewatch-widget'}>
@@ -34,13 +37,40 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                         <CurrentRemotes remotes={remotes} />
                     </div>
                     <Divider />
-                    <div className={'option-menu-container'}>
-                        {options.map((option, index) => (
-                            <Button key={index} variant="contained">
-                                {option}
-                            </Button>
-                        ))}
-                    </div>
+                    {selectedOption ? (
+                        <div>
+                            <h2>
+                                {selectedOption}
+                                <div>
+                                    <BasicTextField />
+                                    <select className="NewRemoteOptionsMenu">
+                                        {NewRemoteOptions.map((option, index) => (
+                                            <option key={index} value={option}>
+                                                {option}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </h2>
+                            <Button onClick={() => setSelectedOption(null)}>Back</Button>
+                            <Button>Next</Button>
+                        </div>
+                    ) : (
+                        <div className="option-menu-container">
+                            {options.map((option, index) => (
+                                <Button key={index} onClick={() => setSelectedOption(option)}>
+                                    {option}
+                                </Button>
+                            ))}
+                        </div>
+                        // <div className={'option-menu-container'}>
+                        //     {options.map((option, index) => (
+                        //         <Button key={index} variant="contained">
+                        //             {option}
+                        //         </Button>
+                        //     ))}
+                        // </div>
+                    )}
                 </div>
             </div>
         </ThemeProvider>
