@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 export default function AccesKeyIdField() {
     return (
         <div>
-            <TextField id="outlined-helperText" label="Remote name" defaultValue="Test" helperText="Enter a valid name for the new remote" />
+            <TextField id="outlined-helperText" label="Access_key_id" defaultValue="ID" helperText="Enter a valid access key for the new remote" />
         </div>
     );
 }

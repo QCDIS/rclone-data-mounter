@@ -3,8 +3,9 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './Theme';
 import { Divider, Button } from '@material-ui/core';
 import CurrentRemotes from './Pages/CurrentRemotes';
-import BasicTextField from './Pages/NameNewRemoteField';
+import NameNewRemoteField from './Pages/NameNewRemoteField';
 import NewRemoteOptions from './Pages/NewRemoteOptions';
+import AccesKeyIdField from './Pages/AccesKeyIdField';
 
 const remotes = [
     { name: 'test', type: 's3' },
@@ -25,6 +26,8 @@ interface DataMounterPanelProps {}
 
 export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const [showAccesKeyIdField, setShowAccesKeyIdField] = useState(false);
+
     return (
         <ThemeProvider theme={theme}>
             <div className={'lifewatch-widget'}>
@@ -53,7 +56,8 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                 </div>
                             </h2>
                             <Button onClick={() => setSelectedOption(null)}>Back</Button>
-                            <Button>Next</Button>
+                            <Button onClick={() => setShowAccesKeyIdField(true)}>Next</Button>
+                            {showAccesKeyIdField && <AccesKeyIdField />}
                         </div>
                     ) : (
                         <div className="option-menu-container">
