@@ -6,28 +6,17 @@ import CurrentRemotes from './Pages/CurrentRemotes';
 import NameNewRemoteField from './Pages/NameNewRemoteField';
 import NewRemoteOptions from './Pages/NewRemoteOptions';
 import AccesKeyIdField from './Pages/AccesKeyIdField';
-
-const remotes = [
-    { name: 'test', type: 's3' },
-    { name: 'test2', type: 's3' },
-    { name: 'test4', type: 's3' }
-];
-
-const options = [
-    'New remote', // I CHANGED THE ORDER HERE FROM RCLONE!!
-    'Edit existing remote',
-    'Delete remote',
-    'Rename remote',
-    'Copy remote',
-    'Set configuration password'
-];
+import { remotes, options, regions } from './RemotesAndOptions';
+import SecretKeyField from './Pages/SecretKeyField';
 
 interface DataMounterPanelProps {}
 
 export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [showAccesKeyIdField, setShowAccesKeyIdField] = useState(false);
-
+    const [showSecretKeyField, setShowSecretKeyField] = useState(false);
+    const [showNameNewRemoteField, setShowNameNewRemoteField] = useState(false);
+    const [showNewRemoteOptions, setShowNewRemoteOptions] = useState(false);
     return (
         <ThemeProvider theme={theme}>
             <div className={'lifewatch-widget'}>
@@ -42,10 +31,33 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                     <Divider />
                     {selectedOption ? (
                         <div>
-                            <h2>
-                                {selectedOption}
-                                <div>
-                                    <NameNewRemoteField />
+                            <h2>{selectedOption}</h2>
+                            <div>
+                                <Button
+                                    onClick={() => {
+                                        setSelectedOption(null);
+                                        setShowAccesKeyIdField(false);
+                                        setShowSecretKeyField(false);
+                                        setShowNameNewRemoteField(false);
+                                        setShowNewRemoteOptions(false);
+                                    }}
+                                >
+                                    Back
+                                </Button>
+                                <Button
+                                    onClick={() => {
+                                        setShowAccesKeyIdField(true);
+                                        setShowSecretKeyField(true);
+                                        setShowNameNewRemoteField(false);
+                                        setShowNewRemoteOptions(false);
+                                    }}
+                                >
+                                    Next
+                                </Button>
+                                {showAccesKeyIdField && <AccesKeyIdField />}
+                                {showSecretKeyField && <SecretKeyField />}
+                                {showNameNewRemoteField && <NameNewRemoteField />}
+                                {showNewRemoteOptions && (
                                     <select className="NewRemoteOptionsMenu">
                                         {NewRemoteOptions.map((option, index) => (
                                             <option key={index} value={option}>
@@ -53,16 +65,20 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                             </option>
                                         ))}
                                     </select>
-                                </div>
-                            </h2>
-                            <Button onClick={() => setSelectedOption(null)}>Back</Button>
-                            <Button onClick={() => setShowAccesKeyIdField(true)}>Next</Button>
-                            {showAccesKeyIdField && <AccesKeyIdField />}
+                                )}
+                            </div>
                         </div>
                     ) : (
                         <div className="option-menu-container">
                             {options.map((option, index) => (
-                                <Button key={index} onClick={() => setSelectedOption(option)}>
+                                <Button
+                                    key={index}
+                                    onClick={() => {
+                                        setSelectedOption(option);
+                                        setShowNameNewRemoteField(true);
+                                        setShowNewRemoteOptions(true);
+                                    }}
+                                >
                                     {option}
                                 </Button>
                             ))}
