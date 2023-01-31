@@ -6,7 +6,9 @@ import CurrentRemotes from './Pages/CurrentRemotes';
 import NameNewRemoteField from './Pages/NameNewRemoteField';
 import NewRemoteOptions from './Pages/NewRemoteOptions';
 import AccesKeyIdField from './Pages/AccesKeyIdField';
-import { remotes, options, regions } from './RemotesAndOptions';
+import EndpointS3APIField from './Pages/EndpointS3API';
+import { remotes, options, regions } from './Pages/RemotesAndOptions';
+import Dropdown from './Pages/Dropdown';
 import SecretKeyField from './Pages/SecretKeyField';
 
 interface DataMounterPanelProps {}
@@ -17,6 +19,8 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
     const [showSecretKeyField, setShowSecretKeyField] = useState(false);
     const [showNameNewRemoteField, setShowNameNewRemoteField] = useState(false);
     const [showNewRemoteOptions, setShowNewRemoteOptions] = useState(false);
+    const [showRegions, setShowRegions] = useState(false);
+    const [showEndpointS3APIField, setShowEndpointS3APIField] = useState(false);
     return (
         <ThemeProvider theme={theme}>
             <div className={'lifewatch-widget'}>
@@ -40,6 +44,8 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                         setShowSecretKeyField(false);
                                         setShowNameNewRemoteField(false);
                                         setShowNewRemoteOptions(false);
+                                        setShowRegions(false);
+                                        setShowEndpointS3APIField(false);
                                     }}
                                 >
                                     Back
@@ -48,6 +54,8 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                     onClick={() => {
                                         setShowAccesKeyIdField(true);
                                         setShowSecretKeyField(true);
+                                        setShowRegions(true);
+                                        setShowEndpointS3APIField(true);
                                         setShowNameNewRemoteField(false);
                                         setShowNewRemoteOptions(false);
                                     }}
@@ -56,16 +64,10 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                 </Button>
                                 {showAccesKeyIdField && <AccesKeyIdField />}
                                 {showSecretKeyField && <SecretKeyField />}
+                                {showRegions && <Dropdown options={regions} show={showRegions} className={'RegionsMenu'} />}
+                                {showEndpointS3APIField && <EndpointS3APIField />}
                                 {showNameNewRemoteField && <NameNewRemoteField />}
-                                {showNewRemoteOptions && (
-                                    <select className="NewRemoteOptionsMenu">
-                                        {NewRemoteOptions.map((option, index) => (
-                                            <option key={index} value={option}>
-                                                {option}
-                                            </option>
-                                        ))}
-                                    </select>
-                                )}
+                                {showNewRemoteOptions && <Dropdown options={NewRemoteOptions} show={showNewRemoteOptions} className={'NewRemoteOptionsMenu'} />}
                             </div>
                         </div>
                     ) : (
