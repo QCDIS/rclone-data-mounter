@@ -13,15 +13,6 @@ import SecretKeyField from './Pages/SecretKeyField';
 
 interface DataMounterPanelProps {}
 
-const [selectedRegionIndex, setSelectedRegionIndex] = React.useState(0);
-const [selectedLocationIndex, setSelectedLocationIndex] = React.useState(0);
-const [selectedEnvVarIndex, setSelectedEnvVarIndex] = React.useState(0);
-const [selectedEncryptionIndex, setSelectedEncryptionIndex] = React.useState(0);
-const [selectedACLIndex, setSelectedACLIndex] = React.useState(0);
-const [selectedKMSIndex, setSelectedKMSIndex] = React.useState(0);
-const [selectedStorageClassIndex, setSelectedStorageClassIndex] = React.useState(0);
-const [selectedNewRemoteOptionIndex, setSelectedNewRemoteOptionIndex] = React.useState(0);
-
 export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [showAccesKeyIdField, setShowAccesKeyIdField] = useState(false);
@@ -41,6 +32,14 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
     // const [AccesKeyIdField, setAccessKeyId] = useState('');
     // const [SecretKeyField, setSecretKey] = useState('');
     // const [EndpointS3APIField, setEndpointS3API] = useState('');
+    const [selectedRegionIndex, setSelectedRegionIndex] = React.useState(0);
+    const [selectedLocationIndex, setSelectedLocationIndex] = React.useState(0);
+    const [selectedEnvVarIndex, setSelectedEnvVarIndex] = React.useState(0);
+    const [selectedEncryptionIndex, setSelectedEncryptionIndex] = React.useState(0);
+    const [selectedACLIndex, setSelectedACLIndex] = React.useState(0);
+    const [selectedKMSIndex, setSelectedKMSIndex] = React.useState(0);
+    const [selectedStorageClassIndex, setSelectedStorageClassIndex] = React.useState(0);
+    const [selectedNewRemoteOptionIndex, setSelectedNewRemoteOptionIndex] = React.useState(0);
 
     return (
         <ThemeProvider theme={theme}>
@@ -155,4 +154,4 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
     );
 };
 
-export { selectedRegionIndex, selectedLocationIndex, selectedEnvVarIndex, selectedEncryptionIndex, selectedACLIndex, selectedKMSIndex, selectedStorageClassIndex, selectedNewRemoteOptionIndex };
+// export { selectedRegionIndex, selectedLocationIndex, selectedEnvVarIndex, selectedEncryptionIndex, selectedACLIndex, selectedKMSIndex, selectedStorageClassIndex, selectedNewRemoteOptionIndex };
