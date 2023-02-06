@@ -15,7 +15,7 @@ import {
     selectedNewRemoteOptionIndex
 } from './DataMounterPanel';
 
-import { requestAPI } from '@jupyter_vre/core';
+import { requestAPI } from './requests';
 
 interface DataSenderProps {
     // name: string;
