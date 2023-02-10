@@ -8,6 +8,9 @@ export const options = ['New remote', 'Edit existing remote', 'Delete remote', '
 
 export const regions = ['Choose a Region', 'eu-west-1', 'eu-west-2', 'eu-west-3', 'eu-central-1', 'eu-central-2', 'eu-north-1', 'eu - south - 1', 'eu - south - 2'];
 
+
+export const s3_regions = ['eu-west-1', 'eu-west-2', 'eu-west-3', 'eu-central-1', 'eu-central-2', 'eu-north-1', 'eu - south - 1', 'eu - south - 2'];
+
 export const location = ['Choose a location constraint', 'eu-west-1', 'eu-west-2', 'eu-west-3', 'eu-central-1', 'eu-central-2', 'eu-north-1', 'eu - south - 1', 'eu - south - 2'];
 
 export const environmentVar = ['Choose auth', 'True', 'False'];

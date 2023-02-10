@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './Theme';
 import { Divider, Button } from '@material-ui/core';
-import { remotes, options, regions, location, environmentVar, encription, acl, kms, storage_class } from './Pages/RemotesAndOptions';
+import { remotes, options, regions, location, environmentVar, encription, acl, kms, storage_class,s3_regions } from './Pages/RemotesAndOptions';
 import CurrentRemotes from './Pages/CurrentRemotes';
 import NewRemoteOptions from './Pages/NewRemoteOptions';
 import Dropdown from './Pages/Dropdown';
@@ -11,9 +11,25 @@ import AccesKeyIdField from './Pages/AccesKeyIdField';
 import EndpointS3APIField from './Pages/EndpointS3API';
 import SecretKeyField from './Pages/SecretKeyField';
 
-interface DataMounterPanelProps {}
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import DataConfDialog from './DataConfDialog'
+
+interface DataMounterPanelProps {
+}
 
 export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
+
+    const [conf, setConf] = React.useState({
+                'name': ''
+            
+        
+        });
+
+
+
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [showAccesKeyIdField, setShowAccesKeyIdField] = useState(false);
     const [showSecretKeyField, setShowSecretKeyField] = useState(false);
@@ -40,6 +56,17 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
     const [selectedKMSIndex, setSelectedKMSIndex] = React.useState(0);
     const [selectedStorageClassIndex, setSelectedStorageClassIndex] = React.useState(0);
     const [selectedNewRemoteOptionIndex, setSelectedNewRemoteOptionIndex] = React.useState(0);
+
+
+
+    const handleChangeRegion = (event: SelectChangeEvent) => {
+        setConf(prevConf => ({...prevConf, type: event.target.value as string}))
+    };
+
+    const handleChangeProvider = (event: SelectChangeEvent) => {
+        setConf(prevConf => ({...prevConf, provider: event.target.value as string}))
+    };
+
 
     return (
         <ThemeProvider theme={theme}>
@@ -96,6 +123,22 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                 </Button>
                                 {showAccesKeyIdField && <AccesKeyIdField />}
                                 {showSecretKeyField && <SecretKeyField />}
+                                <FormControl fullWidth>
+                                    show{showRegions}
+                                    <InputLabel id="region-select-label">Region</InputLabel>
+                                    <Select
+                                    labelId="region-select-label"
+                                    id="region-select"
+                                    value={conf.name}
+                                    label="Region"
+                                    onChange={handleChangeRegion}
+                                    >
+                                    {s3_regions.map((region, index) => (
+                                        <MenuItem value={region}>{region}</MenuItem>
+                                    ))}
+                                    </Select>
+                                </FormControl>
+
                                 <Dropdown options={regions} show={showRegions} className={'RegionsMenu'} selectedIndex={selectedRegionIndex} setSelectedIndex={setSelectedRegionIndex} />
                                 <Dropdown options={location} show={showlocation} className={'locationMenu'} selectedIndex={selectedLocationIndex} setSelectedIndex={setSelectedLocationIndex} />
                                 <Dropdown
@@ -149,6 +192,8 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                         </div>
                     )}
                 </div>
+                <DataConfDialog
+                    conf = {conf}/>           
             </div>
         </ThemeProvider>
     );
