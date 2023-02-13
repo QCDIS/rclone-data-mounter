@@ -2,7 +2,7 @@ import { ILabShell, ILayoutRestorer, JupyterFrontEnd, JupyterFrontEndPlugin, Lab
 import { ReactWidget } from '@jupyterlab/apputils';
 import { Widget } from '@lumino/widgets';
 import * as React from 'react';
-import { DataMounterPanel } from './DataMounterPanel';
+import DataMounterPanel from './DataMounterPanel';
 
 export interface ILifeWatchVRE {
     widget: Widget;

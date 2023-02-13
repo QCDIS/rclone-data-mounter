@@ -13,16 +13,7 @@ import SecretKeyField from './Pages/SecretKeyField';
 
 interface DataMounterPanelProps {}
 
-const [selectedRegionIndex, setSelectedRegionIndex] = React.useState(0);
-const [selectedLocationIndex, setSelectedLocationIndex] = React.useState(0);
-const [selectedEnvVarIndex, setSelectedEnvVarIndex] = React.useState(0);
-const [selectedEncryptionIndex, setSelectedEncryptionIndex] = React.useState(0);
-const [selectedACLIndex, setSelectedACLIndex] = React.useState(0);
-const [selectedKMSIndex, setSelectedKMSIndex] = React.useState(0);
-const [selectedStorageClassIndex, setSelectedStorageClassIndex] = React.useState(0);
-const [selectedNewRemoteOptionIndex, setSelectedNewRemoteOptionIndex] = React.useState(0);
-
-export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
+const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [showAccesKeyIdField, setShowAccesKeyIdField] = useState(false);
     const [showSecretKeyField, setShowSecretKeyField] = useState(false);
@@ -37,10 +28,18 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
     const [showkms, setShowkms] = useState(false);
     const [showstorage_class, setShowstorage_class] = useState(false);
 
-    // const [NameNewRemoteField, setName] = useState('');
-    // const [AccesKeyIdField, setAccessKeyId] = useState('');
-    // const [SecretKeyField, setSecretKey] = useState('');
-    // const [EndpointS3APIField, setEndpointS3API] = useState('');
+    const remoteName = NameNewRemoteField.toString();
+    const access_key_id = AccesKeyIdField.toString();
+    const SecretKey = SecretKeyField.toString();
+    const EndpointS3API = EndpointS3APIField.toString();
+    const [selectedRegionIndex, setSelectedRegionIndex] = useState(0);
+    const [selectedLocationIndex, setSelectedLocationIndex] = useState(0);
+    const [selectedEnvVarIndex, setSelectedEnvVarIndex] = useState(0);
+    const [selectedEncryptionIndex, setSelectedEncryptionIndex] = useState(0);
+    const [selectedACLIndex, setSelectedACLIndex] = useState(0);
+    const [selectedKMSIndex, setSelectedKMSIndex] = useState(0);
+    const [selectedStorageClassIndex, setSelectedStorageClassIndex] = useState(0);
+    const [selectedNewRemoteOptionIndex, setSelectedNewRemoteOptionIndex] = useState(0);
 
     return (
         <ThemeProvider theme={theme}>
@@ -94,6 +93,26 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                     }}
                                 >
                                     Next
+                                </Button>
+                                <Button
+                                    onClick={() => {
+                                        const handleSubmit = {
+                                            [remoteName]: {
+                                                type: 's3',
+                                                provider: 'AWS',
+                                                env_auth: false,
+                                                access_key_id: access_key_id,
+                                                secret_access_key: SecretKey,
+                                                EndpointS3API: EndpointS3API,
+                                                region: regions[selectedRegionIndex],
+                                                location_constraint: location[selectedLocationIndex],
+                                                acl: acl[selectedACLIndex]
+                                            }
+                                        };
+                                        console.log(handleSubmit);
+                                    }}
+                                >
+                                    Submit
                                 </Button>
                                 {showAccesKeyIdField && <AccesKeyIdField />}
                                 {showSecretKeyField && <SecretKeyField />}
@@ -155,4 +174,4 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
     );
 };
 
-export { selectedRegionIndex, selectedLocationIndex, selectedEnvVarIndex, selectedEncryptionIndex, selectedACLIndex, selectedKMSIndex, selectedStorageClassIndex, selectedNewRemoteOptionIndex };
+export default DataMounterPanel;
