@@ -1,3 +1,3 @@
 import { JupyterFrontEndPlugin } from '@jupyterlab/application';
-import notebookSearchWidget from './notebookSearchWidget';
-export default [notebookSearchWidget] as JupyterFrontEndPlugin<any>[];
+import DataMounterWidget from './DataMounterWidget';
+export default [DataMounterWidget] as JupyterFrontEndPlugin<any>[];

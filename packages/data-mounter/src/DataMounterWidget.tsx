@@ -1,14 +1,14 @@
-import { ILabShell, ILayoutRestorer, JupyterFrontEnd, JupyterFrontEndPlugin, LabShell } from "@jupyterlab/application";
+import { ILabShell, ILayoutRestorer, JupyterFrontEnd, JupyterFrontEndPlugin, LabShell } from '@jupyterlab/application';
 import { ReactWidget } from '@jupyterlab/apputils';
-import { Widget } from "@lumino/widgets";
+import { Widget } from '@lumino/widgets';
 import * as React from 'react';
-import { DataMounterPanel } from "./NotebookSearchPanel";
+import DataMounterPanel from './DataMounterPanel';
 
 export interface ILifeWatchVRE {
     widget: Widget;
 }
 
-const id = "lifewatch:data-mounter";
+const id = 'lifewatch:data-mounter';
 
 export default {
     activate,
@@ -17,28 +17,19 @@ export default {
     requires: [ILabShell, ILayoutRestorer]
 } as JupyterFrontEndPlugin<ILifeWatchVRE>;
 
-async function activate (
-    lab: JupyterFrontEnd,
-    labShell: LabShell,
-    restorer: ILayoutRestorer,
-): Promise<ILifeWatchVRE> {
-    
+async function activate(lab: JupyterFrontEnd, labShell: LabShell, restorer: ILayoutRestorer): Promise<ILifeWatchVRE> {
     let widget: ReactWidget;
 
     lab.started.then(() => {
+        widget = ReactWidget.create(<DataMounterPanel />);
 
-        widget = ReactWidget.create(
-            <DataMounterPanel />
-        );
-
-        widget.id = "lifewatch/notebook-search"
-        widget.title.iconClass = "notebook-search-icon"
+        widget.id = 'lifewatch/data-mounter';
+        widget.title.iconClass = 'data-mounter-icon';
         widget.title.caption = 'Data Mounter';
         restorer.add(widget, widget.id);
     });
 
     lab.restored.then(() => {
-
         if (!widget.isAttached) {
             labShell.add(widget, 'left');
         }
