@@ -76,24 +76,35 @@ const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                 >
                                     Back
                                 </Button>
-                                <Button
-                                    onClick={() => {
-                                        setShowAccesKeyIdField(true);
-                                        setShowSecretKeyField(true);
-                                        setShowRegions(true);
-                                        setShowEndpointS3APIField(true);
-                                        setShowlocation(true);
-                                        setShowenvironmentVar(true);
-                                        setShowencription(true);
-                                        setShowacl(true);
-                                        setShowkms(true);
-                                        setShowstorage_class(true);
-                                        setShowNameNewRemoteField(false);
-                                        setShowNewRemoteOptions(false);
-                                    }}
-                                >
-                                    Next
-                                </Button>
+                                {NewRemoteOptions[selectedNewRemoteOptionIndex] === 'S3' && (
+                                    <Button
+                                        onClick={() => {
+                                            setShowAccesKeyIdField(true);
+                                            setShowSecretKeyField(true);
+                                            setShowRegions(true);
+                                            setShowEndpointS3APIField(true);
+                                            setShowlocation(true);
+                                            setShowenvironmentVar(true);
+                                            setShowencription(true);
+                                            setShowacl(true);
+                                            setShowkms(true);
+                                            setShowstorage_class(true);
+                                            setShowNameNewRemoteField(false);
+                                            setShowNewRemoteOptions(false);
+                                        }}
+                                    >
+                                        Next
+                                    </Button>
+                                )}
+                                {NewRemoteOptions[selectedNewRemoteOptionIndex] !== 'S3' && (
+                                    <Button
+                                        onClick={() => {
+                                            // Handle other options here
+                                        }}
+                                    >
+                                        Next
+                                    </Button>
+                                )}
                                 <Button
                                     onClick={() => {
                                         const handleSubmit = {
