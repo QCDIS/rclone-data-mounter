@@ -76,7 +76,7 @@ const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                 >
                                     Back
                                 </Button>
-                                {NewRemoteOptions[selectedNewRemoteOptionIndex] === 'S3' && (
+                                {NewRemoteOptions[selectedNewRemoteOptionIndex] === 's3' && (
                                     <Button
                                         onClick={() => {
                                             setShowAccesKeyIdField(true);
@@ -96,7 +96,7 @@ const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                         Next
                                     </Button>
                                 )}
-                                {NewRemoteOptions[selectedNewRemoteOptionIndex] !== 'S3' && (
+                                {NewRemoteOptions[selectedNewRemoteOptionIndex] !== 's3' && (
                                     <Button
                                         onClick={() => {
                                             // Handle other options here

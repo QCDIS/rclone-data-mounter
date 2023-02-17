@@ -4,7 +4,7 @@ const NewRemoteOptions = [
     'Akamai NetStorage',
     'Alias for an existing remote',
     'Amazon Drive',
-    'S3',
+    's3',
     'Backblaze B',
     'Better checksums for other remotes',
     'Box',
