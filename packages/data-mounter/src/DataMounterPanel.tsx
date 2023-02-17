@@ -98,12 +98,18 @@ const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                     onClick={() => {
                                         const handleSubmit = {
                                             [remoteName]: {
+                                                type: NewRemoteOptions[selectedNewRemoteOptionIndex],
+                                                provider: 'AWS',
                                                 access_key_id: access_key_id,
                                                 secret_access_key: SecretKey,
                                                 EndpointS3API: EndpointS3API,
                                                 region: regions[selectedRegionIndex],
                                                 location_constraint: location[selectedLocationIndex],
-                                                acl: acl[selectedACLIndex]
+                                                environmentVar: environmentVar[selectedEnvVarIndex],
+                                                encription: encription[selectedEncryptionIndex],
+                                                acl: acl[selectedACLIndex],
+                                                kms: kms[selectedKMSIndex],
+                                                storage_class: storage_class[selectedStorageClassIndex]
                                             }
                                         };
                                         console.log(JSON.stringify(handleSubmit));
@@ -111,8 +117,8 @@ const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                 >
                                     Submit
                                 </Button>
-                                {showAccesKeyIdField && (<AccesKeyIdField onChange={setAccessKeyId} />)}
-                                {showSecretKeyField && (<SecretKeyField onChange={setSecretKey} />)}
+                                {showAccesKeyIdField && <AccesKeyIdField onChange={setAccessKeyId} />}
+                                {showSecretKeyField && <SecretKeyField onChange={setSecretKey} />}
                                 <Dropdown options={regions} show={showRegions} className={'RegionsMenu'} selectedIndex={selectedRegionIndex} setSelectedIndex={setSelectedRegionIndex} />
                                 <Dropdown options={location} show={showlocation} className={'locationMenu'} selectedIndex={selectedLocationIndex} setSelectedIndex={setSelectedLocationIndex} />
                                 <Dropdown
@@ -145,8 +151,8 @@ const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                     selectedIndex={selectedNewRemoteOptionIndex}
                                     setSelectedIndex={setSelectedNewRemoteOptionIndex}
                                 />
-                                {showEndpointS3APIField && (<EndpointS3APIField onChange={setEndpointS3API} />)}
-                                {showNameNewRemoteField && (<NameNewRemoteField onChange={setRemoteName} />)}
+                                {showEndpointS3APIField && <EndpointS3APIField onChange={setEndpointS3API} />}
+                                {showNameNewRemoteField && <NameNewRemoteField onChange={setRemoteName} />}
                             </div>
                         </div>
                     ) : (
