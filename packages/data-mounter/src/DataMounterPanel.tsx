@@ -11,6 +11,8 @@ import AccesKeyIdField from './Pages/AccesKeyIdField';
 import EndpointS3APIField from './Pages/EndpointS3API';
 import SecretKeyField from './Pages/SecretKeyField';
 
+const ini = require('ini');
+
 interface DataMounterPanelProps {}
 
 const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
@@ -123,7 +125,7 @@ const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                                 storage_class: storage_class[selectedStorageClassIndex]
                                             }
                                         };
-                                        console.log(JSON.stringify(handleSubmit));
+                                        console.log(ini.stringify(JSON.stringify(handleSubmit)));
                                     }}
                                 >
                                     Submit
