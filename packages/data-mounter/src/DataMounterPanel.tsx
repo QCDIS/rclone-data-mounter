@@ -12,6 +12,8 @@ import EndpointS3APIField from './Pages/EndpointS3API';
 import SecretKeyField from './Pages/SecretKeyField';
 import { requestAPI } from './requests';
 
+const ini = require('ini');
+
 interface DataMounterPanelProps {}
 
 const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
