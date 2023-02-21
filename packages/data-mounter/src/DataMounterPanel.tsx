@@ -10,6 +10,7 @@ import NameNewRemoteField from './Pages/NameNewRemoteField';
 import AccesKeyIdField from './Pages/AccesKeyIdField';
 import EndpointS3APIField from './Pages/EndpointS3API';
 import SecretKeyField from './Pages/SecretKeyField';
+import { requestAPI } from './requests';
 
 interface DataMounterPanelProps {}
 
@@ -40,6 +41,34 @@ const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
     const [selectedKMSIndex, setSelectedKMSIndex] = useState(0);
     const [selectedStorageClassIndex, setSelectedStorageClassIndex] = useState(0);
     const [selectedNewRemoteOptionIndex, setSelectedNewRemoteOptionIndex] = useState(0);
+
+    const handleAPIsend = async () => {
+    try{
+        const resp = await requestAPI<any>('notebooksearch', {
+          body: JSON.stringify({
+              conf: {[remoteName]: {
+                                    type: NewRemoteOptions[selectedNewRemoteOptionIndex],
+                                    provider: 'AWS',
+                                    access_key_id: access_key_id,
+                                    secret_access_key: SecretKey,
+                                    EndpointS3API: EndpointS3API,
+                                    region: regions[selectedRegionIndex],
+                                    location_constraint: location[selectedLocationIndex],
+                                    env_auth: environmentVar[selectedEnvVarIndex],
+                                    encription: encription[selectedEncryptionIndex],
+                                    acl: acl[selectedACLIndex],
+                                    kms: kms[selectedKMSIndex],
+                                    storage_class: storage_class[selectedStorageClassIndex]
+                                            }}
+          }),
+          method: 'POST'
+      });
+      console.log('resp: ',resp)
+    }catch (error){
+        console.log(error);
+        alert(String(error).replace('{"message": "Unknown HTTP Error"}', ''));
+    }
+};
 
     return (
         <ThemeProvider theme={theme}>
@@ -106,25 +135,7 @@ const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                     </Button>
                                 )}
                                 <Button
-                                    onClick={() => {
-                                        const handleSubmit = {
-                                            [remoteName]: {
-                                                type: NewRemoteOptions[selectedNewRemoteOptionIndex],
-                                                provider: 'AWS',
-                                                access_key_id: access_key_id,
-                                                secret_access_key: SecretKey,
-                                                EndpointS3API: EndpointS3API,
-                                                region: regions[selectedRegionIndex],
-                                                location_constraint: location[selectedLocationIndex],
-                                                environmentVar: environmentVar[selectedEnvVarIndex],
-                                                encription: encription[selectedEncryptionIndex],
-                                                acl: acl[selectedACLIndex],
-                                                kms: kms[selectedKMSIndex],
-                                                storage_class: storage_class[selectedStorageClassIndex]
-                                            }
-                                        };
-                                        console.log(JSON.stringify(handleSubmit));
-                                    }}
+                                    onClick={handleAPIsend}
                                 >
                                     Submit
                                 </Button>
