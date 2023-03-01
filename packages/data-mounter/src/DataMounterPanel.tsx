@@ -45,32 +45,34 @@ const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
     const [selectedNewRemoteOptionIndex, setSelectedNewRemoteOptionIndex] = useState(0);
 
     const handleAPIsend = async () => {
-    try{
-        const resp = await requestAPI<any>('notebooksearch', {
-          body: JSON.stringify({
-              conf: {[remoteName]: {
-                                    type: NewRemoteOptions[selectedNewRemoteOptionIndex],
-                                    provider: 'AWS',
-                                    access_key_id: access_key_id,
-                                    secret_access_key: SecretKey,
-                                    EndpointS3API: EndpointS3API,
-                                    region: regions[selectedRegionIndex],
-                                    location_constraint: location[selectedLocationIndex],
-                                    env_auth: environmentVar[selectedEnvVarIndex],
-                                    encription: encription[selectedEncryptionIndex],
-                                    acl: acl[selectedACLIndex],
-                                    kms: kms[selectedKMSIndex],
-                                    storage_class: storage_class[selectedStorageClassIndex]
-                                            }}
-          }),
-          method: 'POST'
-      });
-      console.log('resp: ',resp)
-    }catch (error){
-        console.log(error);
-        alert(String(error).replace('{"message": "Unknown HTTP Error"}', ''));
-    }
-};
+        try {
+            const resp = await requestAPI<any>('notebooksearch', {
+                body: JSON.stringify({
+                    conf: {
+                        [remoteName]: {
+                            type: NewRemoteOptions[selectedNewRemoteOptionIndex],
+                            provider: 'AWS',
+                            access_key_id: access_key_id,
+                            secret_access_key: SecretKey,
+                            EndpointS3API: EndpointS3API,
+                            region: regions[selectedRegionIndex],
+                            location_constraint: location[selectedLocationIndex],
+                            env_auth: environmentVar[selectedEnvVarIndex],
+                            encription: encription[selectedEncryptionIndex],
+                            acl: acl[selectedACLIndex],
+                            kms: kms[selectedKMSIndex],
+                            storage_class: storage_class[selectedStorageClassIndex]
+                        }
+                    }
+                }),
+                method: 'POST'
+            });
+            console.log('resp: ', resp);
+        } catch (error) {
+            console.log(error);
+            alert(String(error).replace('{"message": "Unknown HTTP Error"}', ''));
+        }
+    };
 
     return (
         <ThemeProvider theme={theme}>
@@ -136,11 +138,7 @@ const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                                         Next
                                     </Button>
                                 )}
-                                <Button
-                                    onClick={handleAPIsend}
-                                >
-                                    Submit
-                                </Button>
+                                <Button onClick={handleAPIsend}>Submit</Button>
                                 {showAccesKeyIdField && <AccesKeyIdField onChange={setAccessKeyId} />}
                                 {showSecretKeyField && <SecretKeyField onChange={setSecretKey} />}
                                 <Dropdown options={regions} show={showRegions} className={'RegionsMenu'} selectedIndex={selectedRegionIndex} setSelectedIndex={setSelectedRegionIndex} />
