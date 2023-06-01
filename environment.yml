@@ -1,13 +1,40 @@
 name: rclone-data-mounter
 channels:
   - conda-forge
-  - defaults
 dependencies:
-  - jupyterlab==3.5.0
-  - nodejs==15.14.0
-  - python==3.9.2
-  - yarn
+  - jupyterhub
+  - nbformat
+  - widgetsnbextension
+  - jupyterlab=3.6.1
+  - nodejs=>18.13.0
+  - python>=3.8
+  - yarn=1.22.19
+  - tinydb>=4.6.1
+  - pygithub>=1.55
+  - tornado>=6.1
+  - notebook=6.5.2
+  - pyyaml>=6.0
+  - nbformat
+  - autopep8
+  - Jinja2
+  - distro
+  - requests
+  - colorhash
+  - pyflakes
+  - jupyter-videochat
+  - jupyterlab-github
+  - nbgitpuller
+  - jupyterlab-lsp
+  - python-lsp-server[all]
+  - nb_conda_kernels
+  - rclone
+  - jupyter-archive
+  - zip
+  - unzip
+  - wget
+  - git
+  - pathlib2
   - pip
   - pip:
-      - pre-commit
-      - ggshield
+    - pre-commit
+    - ggshield
