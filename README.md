@@ -22,20 +22,12 @@ Install Anaconda from these instructions: https://linuxize.com/post/how-to-insta
 Close the terminal and start a new one to activate conda.
 
 Create and activate conda environment:
-```shell
-conda create -n jupyterlab  python=3.9 
-```
-Or
+
 ```shell
 conda env create -f environment.yml
 conda activate rclone-data-mounter
 ```
 
-## Install requirements in conda 
-```shell
-conda install jupyterlab nodejs yarn
-conda install -c conda-forge typescript 
-```
 
 Clone project:
 ```shell
@@ -49,15 +41,8 @@ git branch <BRANCH_NAME>
 git checkout <BRANCH_NAME>
 ```
 
-Go to the project folder and install nodejs dependencies :
-```shell 
-npm install lerna --force
-npm install --force
-```
 Build the backend and frontend:
 ```shell
-npx lerna run build --scope @jupyter_vre/core
-npx lerna run build --scope @jupyter_vre/components
 make install-backend && make build-frontend && make install-ui && make link-ui
 ```
 
