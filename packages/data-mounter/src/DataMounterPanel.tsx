@@ -15,7 +15,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import DataConfDialog from './DataConfDialog'
+// import DataConfDialog from './DataConfDialog'
 
 interface DataMounterPanelProps {
 }
@@ -63,9 +63,9 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
         setConf(prevConf => ({...prevConf, type: event.target.value as string}))
     };
 
-    const handleChangeProvider = (event: SelectChangeEvent) => {
-        setConf(prevConf => ({...prevConf, provider: event.target.value as string}))
-    };
+    // const handleChangeProvider = (event: SelectChangeEvent) => {
+    //     setConf(prevConf => ({...prevConf, provider: event.target.value as string}))
+    // };
 
 
     return (
@@ -192,8 +192,8 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                         </div>
                     )}
                 </div>
-                <DataConfDialog
-                    conf = {conf}/>           
+                {/* <DataConfDialog
+                    conf = {conf}/>            */}
             </div>
         </ThemeProvider>
     );
