@@ -192,6 +192,9 @@ export const DataMounterPanel: React.FC<DataMounterPanelProps> = (props) => {
                         </div>
                     )}
                 </div>
+                <Button>
+                Save
+                </Button>
                 {/* <DataConfDialog
                     conf = {conf}/>            */}
             </div>
