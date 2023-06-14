@@ -23,7 +23,7 @@ jobs:
     with:
       wheel_artifact_name: jupyterlab_vre
       dockerfile: Dockerfile-laserfarm-pytorch
-      tag: n-a-a-vre-laserfarm
+      tag: data-mounter-laserfarm
       push: true
     secrets:
       gitlab_username: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
@@ -36,7 +36,7 @@ jobs:
     with:
       wheel_artifact_name: jupyterlab_vre
       dockerfile: Dockerfile-MULTIPLY
-      tag: n-a-a-vre-multiply
+      tag: data-mounter-multiply
       push: true
     secrets:
       gitlab_username: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
@@ -49,7 +49,7 @@ jobs:
     with:
       wheel_artifact_name: jupyterlab_vre
       dockerfile: Dockerfile-vol2bird
-      tag: n-a-a-vre-vol2bird
+      tag: data-mounter-vol2bird
       push: true
     secrets:
       gitlab_username: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
@@ -62,7 +62,7 @@ jobs:
     with:
       wheel_artifact_name: jupyterlab_vre
       dockerfile: Dockerfile-laserfarm-pytorch
-      tag: n-a-a-vre-pytorch
+      tag: data-mounter-pytorch
       push: true
     secrets:
       gitlab_username: ${{ secrets.GITLAB_REGISTRY_USERNAME }}

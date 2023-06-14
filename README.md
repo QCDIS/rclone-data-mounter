@@ -36,7 +36,7 @@ https://github.com/QCDIS/rclone-data-mounter.git
 
 Create and checkout branch:
 ```shell
-cd NaaVRE
+cd rclone-data-mounter/
 git branch <BRANCH_NAME>
 git checkout <BRANCH_NAME>
 ```
@@ -48,7 +48,7 @@ make install-backend && make build-frontend && make install-ui && make link-ui
 
 Build the extension  and start a jupyterlab instance:
 ```shell
-jupyter lab build && jupyter lab --debug --watch
+jupyter lab --debug --watch --NotebookApp.token='' --NotebookApp.ip='0.0.0.0' --NotebookApp.allow_origin='*'
 ```
 
 Build wheel file for release:

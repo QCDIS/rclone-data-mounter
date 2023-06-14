@@ -52,7 +52,7 @@ class ExportWorkflowHandler(APIHandler):
         template = template_env.get_template('workflow_template_v2.jinja2')
         if cell:
             if 'JUPYTERHUB_USER' in os.environ:
-                workflow_name = 'n-a-a-vre-' + os.environ['JUPYTERHUB_USER']
+                workflow_name = 'data-mounter-' + os.environ['JUPYTERHUB_USER']
 
             template.stream(
                 vlab_slug=vlab_slug,
@@ -132,7 +132,7 @@ class ExecuteWorkflowHandler(APIHandler):
         template = template_env.get_template('workflow_template_v2.jinja2')
 
         if 'JUPYTERHUB_USER' in os.environ:
-            workflow_name = 'n-a-a-vre-' + os.environ['JUPYTERHUB_USER']
+            workflow_name = 'data-mounter-' + os.environ['JUPYTERHUB_USER']
         template = template.render(
             vlab_slug=vlab_slug,
             deps_dag=deps_dag,
